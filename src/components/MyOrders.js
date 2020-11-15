@@ -7,10 +7,10 @@ class MyOrders extends Component {
     return (
 
         <React.Fragment>
-    
-     <div className="ordersummary">
-     {this.props.cartItemList && this.props.cartItemList.length > 0 ?
+       {this.props.cartItemList && this.props.cartItemList.length > 0 ?
      this.props.cartItemList.map((cartItem) => 
+     <div className="ordersummary">
+  
      <React.Fragment>
          <div className="orderdetails" >
          <h5 style={{display:"inline-block"}}> Order Placed : 14th Nov 2019</h5>
@@ -30,10 +30,12 @@ className= "imageClass"  alt="book" />
    <p> Page Count:{cartItem.pages} </p>
         </div>
         </React.Fragment>
+        </div>
      ) : 
      
      
      <React.Fragment>
+               <div className="ordersummary">
          <div className="orderdetails" >
          <h5 style={{display:"inline-block"}}> Order Placed : 14th Nov 2019</h5>
          <span>
@@ -49,11 +51,12 @@ className= "imageClass"  alt="book" />
          <div style={{width:"60%", float:"left"}}>
          <p> Book Price : 200</p>
    <p> Author Name : "Stephen"</p>
-   <p> Page Count: 400 </p>
+   <p> Page Count: 100 </p>
+        </div>
         </div>
         </React.Fragment>
 }
-     </div>
+     
 
       
      </React.Fragment>

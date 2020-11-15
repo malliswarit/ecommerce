@@ -2,18 +2,31 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 class Cart extends Component {
   state={
-    totalcost:0
+    totalcost:0,
+    itemcost:0,
+    itemtax:0,
+    itemship:0
   }
 
   async componentDidMount(){
     if(this.props.cartItemList && this.props.cartItemList.length > 0){
       let cost = 0;
-      
+      let itemcost = 0;
+      let itemtax = 0;
+      let itemship= 0;
       {this.props.cartItemList.map((cartItem) => 
-      cost = cost + cartItem.price * cartItem.count + cartItem.tax * cartItem.count
-            + cartItem.shipping * cartItem.count
+
+        (itemcost = itemcost + cartItem.price * cartItem.count,
+        itemtax = itemtax + cartItem.tax * cartItem.count,
+        itemship = itemship + cartItem.shipping * cartItem.count,
+
+     
+      cost = cost + cartItem.price * cartItem.count + 
+      cartItem.tax * cartItem.count
+            + cartItem.shipping * cartItem.count)
+     
       )}
-     await this.setState({totalcost:cost})
+     await this.setState({totalcost:cost, itemcost,itemtax,itemship})
     }
   }
   render() {
@@ -62,23 +75,22 @@ class Cart extends Component {
 
       </div>
         <br/>
-        {this.props.cartItemList && this.props.cartItemList.length > 0 ?
+        
         
       <div style={{width:"40%",marginTop:"350px", marginLeft:"700px"}}>
       <h1> Payment Info: CREDIT CARD </h1>
-      {this.props.cartItemList.map((cartItem) => 
-    <React.Fragment>
-      <p> Item Price: {cartItem.price * cartItem.count} </p>
-      <p> Tax Saving: {cartItem.tax * cartItem.count} </p>
-      <p> Shipping charge: {cartItem.shipping * cartItem.count }  </p>
+     
+      <p> Item Price: {this.state.itemcost} </p>
+      <p> Tax Saving: {this.state.itemtax} </p>
+      <p> Shipping charge: {this.state.itemship}  </p>
       
-      </React.Fragment>    
       
-      )}
+      
+    
      <p> Total : {this.state.totalcost}  </p> 
       <button style={{padding:"10px", marginRight:"20px"}}> Checkout </button>
       <button style={{padding:"10px", marginRight:"20px"}}> Cancel</button>
-      </div> : null}
+      </div> 
       
    </React.Fragment>
   
