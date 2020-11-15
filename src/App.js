@@ -1,32 +1,23 @@
-import React, { Component } from "react";
-import { Provider } from "react-redux";
-import Products from "./components/Products";
-import Filter from "./components/Filter";
-import Basket from "./components/Basket";
-import store from "./store";
-import "./App.css";
-import Copyright from "./components/Copyright";
+import React, { Component } from 'react';
+
+import RouterPath from "./components/Router";
+import {Provider} from 'react-redux';
+import store from "./components/store";
+import './App.css';
 
 class App extends Component {
+  
   render() {
+  
     return (
-      <Provider store={store}>
-        <div className="container">
-          <h1>E-commerce Shopping Cart Application</h1>
-          <hr />
-          <div className="row">
-            <div className="col-md-9">
-              <Filter />
-              <hr />
-              <Products />
-            </div>
-            <div className="col-md-3">
-              <Basket />
-              <Copyright />
-            </div>
-          </div>
-        </div>
-      </Provider>
+      <React.Fragment>
+    <Provider store={store}>
+        <RouterPath />
+        </Provider>
+      </React.Fragment>
+   
+  
+ 
     );
   }
 }
